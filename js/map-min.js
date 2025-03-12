@@ -1,0 +1,1 @@
+"use strict";!function(){var o,a;ymaps.ready(function(){o=new ymaps.Map("map",{center:[56.898999,60.620226],zoom:16}),a=new ymaps.Placemark([56.898999,60.620226],{iconCaption:"Кафе «Лукоморье»"},{preset:"islands#redFoodIcon",iconColor:"#e1353c"}),o.geoObjects.add(a),o.behaviors.disable("drag"),o.behaviors.disable("scrollZoom")})}();
