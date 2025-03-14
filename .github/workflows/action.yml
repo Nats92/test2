@@ -8,14 +8,24 @@ on:
 jobs:
   push:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout исходного репозитория
+        uses: actions/checkout@v4
         with:
           token: ${{ secrets.TEST }}
           ref: 'master'
-      - run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git remote add cloned https://x-access-token:${GITHUB_TOKEN}@github.com/Nats92/test2.git
-          git push cloned master
+          fetch-depth: 0
+
+      - name: Установить Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Добавить удалённый репозиторий
+        run: |
+          git remote add target https://x-access-token:${{ secrets.TEST }}@github.com/Nats92/test2.git || echo "Remote already exists"
+          git fetch target
+
+      - name: Push в master целевого репозитория
+        run: |
+          git push target master:master
