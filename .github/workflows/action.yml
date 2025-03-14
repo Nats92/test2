@@ -10,7 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Git Identity
+      - run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git remote add cloned https://x-access-token:${GITHUB_TOKEN}@github.com/Nats92/test2.git
       - uses: actions/checkout@v4
         with:
           ref: 'master'
-      - run: git push git@github.com:Nats92/test2.git master
+      - run: git push cloned master
