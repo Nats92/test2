@@ -1,4 +1,16 @@
-asasas
-dsfds
-fsdfsdf
-dsfdsf
+name: Push master to repo
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 'master'
+      - run: git push git@github.com:Nats92/test2.git master
