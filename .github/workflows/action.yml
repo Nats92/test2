@@ -12,6 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          token: ${{ secrets.TEST }}
           ref: 'master'
       - run: |
           git config --global user.name 'github-actions[bot]'
